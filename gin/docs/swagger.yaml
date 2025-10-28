@@ -1,0 +1,137 @@
+info:
+  contact: {}
+paths:
+  /comment/create:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 评论内容json字符串
+        in: body
+        name: comment
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 创建评论
+      tags:
+      - auth
+  /comment/getListByPostId:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 文章ID
+        in: query
+        name: post_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: 根据文章ID查询评论
+      tags:
+      - auth
+  /post/create:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 文章信息
+        in: body
+        name: post
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 创建文章，只有已认证的用户才能创建文章，创建文章时需要提供文章的标题和内容
+      tags:
+      - auth
+  /post/delete:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 文章ID
+        in: query
+        name: post_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: 删除文章功能，只有文章的作者才能删除自己的文章。
+      tags:
+      - auth
+  /post/query:
+    get:
+      produces:
+      - application/json
+      responses: {}
+      summary: 查询文章功能，支持获取所有文章列表和单个文章的详细信息。
+      tags:
+      - auth
+  /post/update:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 内容json字符串
+        in: body
+        name: content
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 更新文章功能，只有文章的作者才能更新自己的文章。
+      tags:
+      - auth
+  /user/login:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 登录接口
+      tags:
+      - auth
+  /user/registry:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 注册接口
+      tags:
+      - auth
+swagger: "2.0"
